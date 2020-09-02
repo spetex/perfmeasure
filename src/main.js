@@ -87,13 +87,12 @@ function write(auth, data, config) {
     }
   })
     .then(function (response) {
-      console.log('Data written to spreadsheet!')
     }, function (reason) {
       console.log('error: ' + reason)
     });
 }
 
-function run(site, strategy) {
+function run(site, strategy, runs) {
   fs.readFile('config.json', (err, content) => {
     if (err) {
       console.log('Error loading config file:', err)
@@ -106,6 +105,9 @@ function run(site, strategy) {
       .then(response => response.json())
       .then(json => {
         authorize(config, write, json)
+        if (runs > 1) {
+          run(site, strategy, runs - 1)
+        }
     })
   });
 }
@@ -113,9 +115,14 @@ function run(site, strategy) {
 cli.option('--strategy <strategy>', 'Choose strategy (mobile, desktop)', {
   default: 'mobile'
 })
+cli.option('--runs <runs>', 'Number of runs', {
+  default: '1'
+})
 
 cli.help()
 cli.version('0.0.1')
 
 const parsed = cli.parse()
-run(parsed.args[0], parsed.options.strategy)
+const runs = Number(parsed.options.runs)
+
+run(parsed.args[0], parsed.options.strategy, runs)
