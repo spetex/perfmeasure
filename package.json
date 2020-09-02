@@ -1,0 +1,24 @@
+{
+  "name": "perfmeasure",
+  "version": "0.0.1",
+  "description": "Performance Measuring CLI Tool",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spetex/perfmeasure.git"
+  },
+  "author": "spetex",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/spetex/perfmeasure/issues"
+  },
+  "homepage": "https://github.com/spetex/perfmeasure#readme",
+  "dependencies": {
+    "cac": "^6.6.1",
+    "es6-promise": "^4.2.8",
+    "isomorphic-fetch": "^2.2.1"
+  }
+}
