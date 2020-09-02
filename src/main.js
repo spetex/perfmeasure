@@ -74,12 +74,15 @@ function write(auth, data, config) {
     resource: {
       'majorDimension': 'ROWS',
       'values': [[
+        data.analysisUTCTimestamp,
+        data.id,
         data.lighthouseResult.audits['first-contentful-paint'].numericValue / 1000,
         data.lighthouseResult.audits['speed-index'].numericValue / 1000,
         data.lighthouseResult.audits['interactive'].numericValue / 1000,
         data.lighthouseResult.audits['first-meaningful-paint'].numericValue / 1000,
         data.lighthouseResult.audits['first-cpu-idle'].numericValue / 1000,
-        data.lighthouseResult.audits['estimated-input-latency'].numericValue / 1000
+        data.lighthouseResult.audits['estimated-input-latency'].numericValue / 1000,
+        data.loadingExperience.overall_category
       ]]
     }
   })
